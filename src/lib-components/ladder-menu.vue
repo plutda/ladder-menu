@@ -9,7 +9,7 @@ export default {
       default: () => []
     },
     // 表示选中的字段
-    selectField: {
+    selected: {
       type: String,
       default: () => 'selected'
     },
@@ -30,25 +30,25 @@ export default {
   methods: {
     init() {
       if (this.menuItems[0]) {
-        this.menuItems[0][this.selectField] = true
+        this.menuItems[0][this.selected] = true
         this.menuItems[0]._realSelected = true
         this.$emit('update:select', this.getSelection())
       }
     },
     selectItem (item, index, list) {
       list.forEach(k => {
-        k[this.selectField] = false
+        k[this.selected] = false
         k._realSelected = false
       })
-      item[this.selectField] = true
+      item[this.selected] = true
       item._realSelected = true
       if (item[this.children].length > 0) {
         list.forEach(k => {
           k[this.children] && k[this.children].forEach(j => {
-            j[this.selectField] = false
+            j[this.selected] = false
           })
         })
-        item[this.children][0][this.selectField] = true
+        item[this.children][0][this.selected] = true
       }
       this.updateSubMenuPos(index)
       this.$emit('update:select', this.getSelection())
@@ -59,16 +59,16 @@ export default {
     },
     leaveItem(item) {
       if (!item._realSelected) {
-        item[this.selectField] = false;
+        item[this.selected] = false;
       }
     },
     selectSubItem(item, list) {
       list.forEach(k => {
         k[this.children] && k[this.children].forEach(j => {
-          j[this.selectField] = false
+          j[this.selected] = false
         })
       })
-      item[this.selectField] = true
+      item[this.selected] = true
       this.$forceUpdate()
 
       this.$emit('update:select', this.getSelection())
@@ -84,12 +84,12 @@ export default {
     },
     getSelection() {
       return this.menuItems.reduce((total, cur) => {
-        if (cur[this.selectField]) {
+        if (cur[this.selected]) {
           total.push(cur.id)
         }
         const children = cur[this.children] || []
         children.forEach(item => {
-          if (item[this.selectField]) {
+          if (item[this.selected]) {
             total.push(item.id)
           }
         })
@@ -106,7 +106,7 @@ export default {
       <li
         v-for="(item, index) in menuItems"
         :key="item.type"
-        :class="{active: item[selectField]}"
+        :class="{active: item[selected]}"
         @click="selectItem(item, index, menuItems)"
         @mouseover="hoverItem(item, index)"
         @mouseleave="leaveItem(item)"
@@ -120,7 +120,7 @@ export default {
       <li
         v-for="item in subMenuItems"
         :key="item.id"
-        :class="{active: item[selectField]}"
+        :class="{active: item[selected]}"
         @click="selectSubItem(item, menuItems)"
       >
         <div class="menu-item">

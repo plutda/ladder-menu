@@ -1,8 +1,9 @@
 <script>
 import Vue from 'vue';
 import { menuData } from '../src/lib-components/data'
-// Uncomment import and local "components" registration if library is not registered globally.
-// import { LadderMenuSample } from '@/entry.esm';
+import ladderMenu from '@/entry.esm'
+
+Vue.use(ladderMenu)
 
 export default Vue.extend({
   name: 'ServeDev',
@@ -12,15 +13,12 @@ export default Vue.extend({
       select: []
     }
   }
-  // components: {
-  //  LadderMenuSample,
-  // }
 });
 </script>
 
 <template>
   <div id="app">
-    <ladder-menu-sample
+    <ladder-menu
       :data="menuData"
       :select.sync="select"
       children="children"
