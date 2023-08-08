@@ -1,6 +1,6 @@
 {
   "name": "ladder-menu",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/ladder-menu.ssr.js",
   "browser": "dist/ladder-menu.esm.js",
