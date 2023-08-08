@@ -1,7 +1,9 @@
 # ladder-menu
 vue2、ladder menu[梯形菜单]
 
-<img src="screenshot.png" alt="Demo" width="400">
+<img src="./screenshot.png" alt="Demo" width="400">
+
+[在线预览](https://plutda.github.io/ladder-menu/)
 
 ## 安装
 
