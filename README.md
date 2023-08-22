@@ -24,6 +24,38 @@ Vue.use(ladderMenu)
 />
 ```
 
+```
+data() {
+  return {
+    menuData: [
+      {
+        id: 111,
+        name: '数据类',
+        type: 'data',
+        selected: false,
+        children: [
+          {id: 1, name: '查询', selected: true},
+          {id: 2, name: '新增'},
+          {id: 3, name: '修改'},
+          {id: 4, name: '删除'}
+        ]
+      },
+      {
+        id: 222,
+        name: '关系类',
+        type: 'relation',
+        selected: false,
+        children: [
+          {id: 5, name: '新增'},
+          {id: 6, name: '删除'}
+        ]
+      },
+    ],
+    select: []
+  }
+}
+```
+
 
 | 字段名称          | 类型     | 默认值 | 描述                                                      |
 | ----------------- | -------- | ------ | --------------------------------------------------------- |
